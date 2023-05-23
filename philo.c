@@ -6,7 +6,7 @@
 /*   By: aennaouh <aennaouh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 02:51:45 by aennaouh          #+#    #+#             */
-/*   Updated: 2023/05/23 16:12:09 by aennaouh         ###   ########.fr       */
+/*   Updated: 2023/05/23 21:34:12 by aennaouh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int	main(int argc, char **argv)
 	}
 	else
 		printf("Invalid number of args\n");
-	read_instraction(&fix, argv);
+	read_instraction(&fix, argv, argc);
 	init(&insid, fix.number_of_philosophers, fix);
 	pthread_mutex_init(&mutex, NULL);
 	creat_threads(insid, fix);

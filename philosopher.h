@@ -6,7 +6,7 @@
 /*   By: aennaouh <aennaouh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 07:33:37 by aennaouh          #+#    #+#             */
-/*   Updated: 2023/05/23 12:14:03 by aennaouh         ###   ########.fr       */
+/*   Updated: 2023/05/23 18:58:54 by aennaouh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ char	*ft_strdup(const char *s1);
 char	*ft_strjoin(const char *s1, const char *s2);
 char	**ft_split(char const *s, char c);
 void	ft_bzero(void *s, size_t n);
-void    read_instraction(t_info *insid, char **argv);
+void    read_instraction(t_info *insid, char **argv, int argc);
 t_data	*ft_lstnew(int content);
 void	ft_lstadd_back(t_data **lst, t_data *new);
 long    long gettime();

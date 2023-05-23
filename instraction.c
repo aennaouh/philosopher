@@ -6,39 +6,36 @@
 /*   By: aennaouh <aennaouh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 19:46:35 by aennaouh          #+#    #+#             */
-/*   Updated: 2023/05/23 16:12:47 by aennaouh         ###   ########.fr       */
+/*   Updated: 2023/05/23 18:59:22 by aennaouh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosopher.h"
 
-void number_of_times_each_philosopher_must_eat(t_data *insid)
-{
-	while(1)
-	{
-		if (insid->info.number_of_times_each_philosopher_must_eat) 
-		{
-				time_finish(insid);
-				printf("%s", "----the_stimulation_stop_when_philo_dies----");
-		}
-	else if ( insid->info.time_to_eat > insid->info.number_of_times_each_philosopher_must_eat)
-		{	
-			printf("%s", "----the stimulation stop----");
-				exit(1);
-		}
-	}
-}
+// void number_of_times_each_philosopher_must_eat(t_data *insid)
+// {
+// 	while(1)
+// 	{
+// 		if (insid->info.number_of_times_each_philosopher_must_eat) 
+// 		{
+// 				time_finish(insid);
+// 				printf("%s", "----the_stimulation_stop_when_philo_dies----");
+// 		}
+// 	else if ( insid->info.time_to_eat > insid->info.number_of_times_each_philosopher_must_eat)
+// 		{	
+// 			printf("%s", "----the stimulation stop----");
+// 				exit(1);
+// 		}
+// 	}
+// }
 
 void	to_eat(t_data *insid)
 {
 	pthread_mutex_lock(insid->mutex);
-	printf(" %lld %d has taken a fork\n", \
-	gettime() - insid->info.start_time, insid->index);
+	//printf(" %lld %d has taken a fork\n",  gettime() - insid->info.start_time, insid->index);
 	pthread_mutex_lock(insid->next->mutex); 
-	printf(" %lld %d has taken a fork\n", \
-	gettime() - insid->info.start_time, insid->index);
-	printf(" %lld %d is eat\n", \
-	gettime() - insid->info.start_time, insid->index);
+	//printf(" %lld %d has taken a fork\n", gettime() - insid->info.start_time, insid->index);
+	printf(" %lld %d is eat\n", gettime() - insid->info.start_time, insid->index);
 	insid->last_eat = gettime();
 	usleep(insid->info.time_to_eat * 1000);
 	pthread_mutex_unlock(insid->mutex);
@@ -71,7 +68,6 @@ void	*routine(void *arg)
 		to_eat(insid);
 		to_sleep(insid);
 		to_think(insid);
-		number_of_times_each_philosopher_must_eat(insid);
 	}
 	return (NULL);
 }
