@@ -6,7 +6,7 @@
 /*   By: aennaouh <aennaouh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 07:33:03 by aennaouh          #+#    #+#             */
-/*   Updated: 2023/04/13 02:27:55 by aennaouh         ###   ########.fr       */
+/*   Updated: 2023/05/23 15:58:27 by aennaouh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,4 +95,14 @@ void	ft_check_zero(char **str)
 		}
 		i++;
 	}
+}
+
+void	read_instraction(t_info *insid, char **argv)
+{
+	insid->number_of_philosophers = ft_atoi(argv[1]);
+	insid->time_to_die = ft_atoi(argv[2]);
+	insid->time_to_eat = ft_atoi(argv[3]);
+	insid->time_to_sleep = ft_atoi(argv[4]);
+	insid->number_of_times_each_philosopher_must_eat = ft_atoi(argv[5]);
+	insid->start_time = gettime();
 }

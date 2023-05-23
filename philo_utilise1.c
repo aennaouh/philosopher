@@ -6,7 +6,7 @@
 /*   By: aennaouh <aennaouh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 23:36:56 by aennaouh          #+#    #+#             */
-/*   Updated: 2023/04/12 23:48:10 by aennaouh         ###   ########.fr       */
+/*   Updated: 2023/05/22 18:19:43 by aennaouh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,30 +83,30 @@ static void	free_tab(char **str)
 	free(str);
 }
 
-void	*ft_calloc(size_t count, size_t size)
-{
-	void	*str;
+// void	*ft_calloc(size_t count, size_t size)
+// {
+// 	void	*str;
 
-	str = (void *) malloc(count * (size));
-	if (!str)
-		return (NULL);
-	ft_bzero(str, count * size);
-	return (str);
-}
+// 	str = (void *) malloc(count * (size));
+// 	if (!str)
+// 		return (NULL);
+// 	ft_bzero(str, count * size);
+// 	return (str);
+// }
 
-void	ft_bzero(void *s, size_t n)
-{
-	size_t	i;
-	char	*str;
+// void	ft_bzero(void *s, size_t n)
+// {
+// 	size_t	i;
+// 	char	*str;
 
-	str = (char *)s;
-	i = 0;
-	while (i < n)
-	{
-		str[i] = 0;
-		i++;
-	}
-}
+// 	str = (char *)s;
+// 	i = 0;
+// 	while (i < n)
+// 	{
+// 		str[i] = 0;
+// 		i++;
+// 	}
+// }
 
 char	**ft_split(char const *s, char c)
 {

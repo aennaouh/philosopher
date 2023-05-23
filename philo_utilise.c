@@ -6,7 +6,7 @@
 /*   By: aennaouh <aennaouh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 23:38:03 by aennaouh          #+#    #+#             */
-/*   Updated: 2023/04/12 23:43:02 by aennaouh         ###   ########.fr       */
+/*   Updated: 2023/05/23 12:13:57 by aennaouh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ int	ft_atoi(const char *str)
 	}
 	return (sign * res);
 }
+
 char	*ft_strdup(const char *s1)
 {
 	size_t	i;
