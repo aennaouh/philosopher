@@ -6,7 +6,7 @@
 /*   By: aennaouh <aennaouh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/13 16:54:45 by aennaouh          #+#    #+#             */
-/*   Updated: 2023/05/22 18:20:38 by aennaouh         ###   ########.fr       */
+/*   Updated: 2023/06/21 15:43:49 by aennaouh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,23 +24,24 @@ t_data	*ft_lstnew(int content)
 
 void	ft_lstadd_back(t_data **lst, t_data *new)
 {
+	t_data	*tmp;
+
 	if (!new)
 		return ;
 	if (!*lst)
 	{
 		*lst = new;
-		new->next = new; // Make the new node point to itself
+		new->next = new;
 	}
 	else
 	{
-		t_data *tmp = *lst;
+		tmp = *lst;
 		while (tmp->next != *lst)
 		{
 			tmp = tmp->next;
 		}
 		tmp->next = new;
 		new->next = *lst;
-		// Make the new node point to the first node
 	}
 }
 

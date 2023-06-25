@@ -6,28 +6,52 @@
 /*   By: aennaouh <aennaouh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/22 18:13:58 by aennaouh          #+#    #+#             */
-/*   Updated: 2023/05/23 11:29:13 by aennaouh         ###   ########.fr       */
+/*   Updated: 2023/06/22 20:01:04 by aennaouh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosopher.h"
 
-void	time_finish(t_data *insid)
+int	is_all_ate(t_data *insid)
+{
+	int	i;
+
+	i = 0;
+	while (i < insid->info->number_of_philosophers)
+	{
+		if (insid->count_eat < \
+		insid->info->number_of_times_each_philosopher_must_eat)
+			return (0);
+		insid = insid->next;
+		i++;
+	}
+	return (1);
+}
+
+int	time_finish(t_data *insid)
 {
 	while (1)
 	{
+		pthread_mutex_lock(insid->info->mut);
 		if (insid->last_eat > 0 && \
-		gettime() - insid->last_eat > insid->info.time_to_die)
+		gettime() - insid->last_eat > insid->info->time_to_die)
 		{
-			printf(" %lld %d is died\n", \
-			gettime() - insid->info.start_time, insid->index);
-			exit(1);
+			printf("%lld %d is died\n", \
+			gettime() - insid->info->start_time, insid->index);
+			return (1);
+		}
+		if (insid->info->number_of_times_each_philosopher_must_eat != -1)
+		{
+			if (is_all_ate(insid))
+				return (1);
 		}
 		insid = insid->next;
+		pthread_mutex_unlock(insid->info->mut);
 	}
+	return (0);
 }
 
-long long	gettime(void)
+size_t	gettime(void)
 {
 	long long		time;
 	struct timeval	tv;
@@ -37,11 +61,22 @@ long long	gettime(void)
 	return (time);
 }
 
-// void usleep1(unsigned int milliseconds) 
-// {
-//     struct timespec req;
-//     req.tv_sec = milliseconds / 1000;
-//     req.tv_nsec = (milliseconds % 1000) * 1000000L;
+void	usleep1(size_t time_give)
+{
+	long long	time;
 
-//     while (nanosleep(&req, &req) == -1);
-// }
+	time = gettime();
+	while (1)
+	{
+		if (gettime() - time >= time_give)
+			break ;
+		else
+			usleep(100);
+	}
+}
+
+int	error(char *str)
+{
+	write(2, str, ft_strlen(str));
+	return (1);
+}
